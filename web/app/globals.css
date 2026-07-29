@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F3ED;
+  --surface: #FFFFFF;
+  --border: #E8E1D6;
+  --ink: #2B2420;
+  --ink-secondary: #6B6157;
+  --accent: #B5697A;
+  --accent-hover: #9C5568;
+  --success: #E7EDE3;
+  --success-text: #4F6B47;
+  --warning: #F7E8D2;
+  --warning-text: #8C5A1E;
+  --danger: #F3DCD8;
+  --danger-text: #8C3B2E;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #221E1B;
+    --surface: #2C2723;
+    --border: #3D362F;
+    --ink: #F3EDE5;
+    --ink-secondary: #B9AEA0;
+    --accent: #D98A9B;
+    --accent-hover: #E4A2B1;
+    --success: #33402F;
+    --success-text: #B7D0AC;
+    --warning: #40331E;
+    --warning-text: #EBC287;
+    --danger: #402522;
+    --danger-text: #E7A79A;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-success: var(--success);
+  --color-success-text: var(--success-text);
+  --color-warning: var(--warning);
+  --color-warning-text: var(--warning-text);
+  --color-danger: var(--danger);
+  --color-danger-text: var(--danger-text);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-jakarta);
+
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans), sans-serif;
+}
