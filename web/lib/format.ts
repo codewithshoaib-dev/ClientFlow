@@ -45,3 +45,35 @@ export function formatRelativeTime(
 export function isOverdue(dueDateIso: string, now: Date = new Date()): boolean {
   return new Date(dueDateIso).getTime() < now.getTime();
 }
+
+export function formatDayDivider(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+}
+
+// Groups a chronologically-sorted list into per-calendar-day buckets, used
+// to render day dividers in the comment thread. Assumes items are already
+// sorted oldest-first (mock data and the eventual API both guarantee this) —
+// does not sort internally, so an unsorted input silently produces wrong
+// groupings instead of throwing.
+export function groupByCalendarDay<T>(
+  items: T[],
+  getIso: (item: T) => string,
+): { dayLabel: string; items: T[] }[] {
+  const groups: { dayLabel: string; items: T[] }[] = [];
+
+  for (const item of items) {
+    const dayLabel = formatDayDivider(getIso(item));
+    const lastGroup = groups[groups.length - 1];
+
+    if (lastGroup && lastGroup.dayLabel === dayLabel) {
+      lastGroup.items.push(item);
+    } else {
+      groups.push({ dayLabel, items: [item] });
+    }
+  }
+
+  return groups;
+}
